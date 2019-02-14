@@ -51,7 +51,7 @@ public class ClienteRestController  {
 	// Se utiliza el put para actualizar un contenido
 	@PutMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente apdate (@RequestBody Cliente cliente, @PathVariable Long id)
+	public Cliente update (@RequestBody Cliente cliente, @PathVariable Long id)
 	{
 		Cliente clienteActual = clienteService.findById(id);
 		clienteActual.setApellido(cliente.getApellido());
