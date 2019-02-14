@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.lang.NonNull;
+
 /**
  * @author WMOINA
  *
@@ -32,8 +34,11 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable=false)
 	private String nombre;
 	private String apellido;
+	
+	@Column(nullable=false, unique=true)
 	private String email;
 	
 	@Column(name="create_at")
