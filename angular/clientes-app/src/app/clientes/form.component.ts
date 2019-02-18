@@ -3,7 +3,6 @@ import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import Swal from 'sweetalert2';
-import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-form',
@@ -13,6 +12,8 @@ export class FormComponent implements OnInit {
 
   private title = 'Crear Clinete';
   private cliente: Cliente = new Cliente();
+  private errores: string[];
+
   constructor(private clienteservice: ClienteService, private router: Router, private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit() {
@@ -24,6 +25,11 @@ export class FormComponent implements OnInit {
       cliente => {
         this.router.navigate(['/clientes']);
         Swal.fire('Nuevo cliente', `Se ha creado con exito el cliente ${cliente.nombre} !`, 'success');
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error('Codigo de error desde el backend: ' + err.status);
+        console.error(err.error.errors);
       }
     );
   }
@@ -44,6 +50,11 @@ export class FormComponent implements OnInit {
       json => {
         this.router.navigate(['/clientes']);
         Swal.fire('Actualizar cliente', `${json.mensaje}: ${json.cliente.nombre}`, 'success' );
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error('Codigo de error desde el backend: ' + err.status);
+        console.error(err.error.errors);
       }
     );
   }

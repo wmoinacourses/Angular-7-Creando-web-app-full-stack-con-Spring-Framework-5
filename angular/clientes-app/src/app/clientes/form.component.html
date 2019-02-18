@@ -1,3 +1,9 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+    {{err}}
+  </li>
+</ul>
+
 <div class="card bg-dark text-white">
   <div class="card-header">
     {{ title }}
@@ -12,10 +18,11 @@
             class="form-control"
             [(ngModel)]="cliente.nombre"
             name="nombre"
-            required
-            minlength="4"
+
             #nombre="ngModel"
           />
+          <!-- required
+          minlength="4" -->
           <div
             class="alert alert-danger"
             *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
@@ -38,10 +45,11 @@
             class="form-control"
             [(ngModel)]="cliente.apellido"
             name="apellido"
-            required
-            minlength="4"
+
             #apellido="ngModel"
           />
+            <!-- required
+            minlength="4" -->
           <div
             class="alert alert-danger"
             *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
@@ -64,10 +72,11 @@
             class="form-control"
             [(ngModel)]="cliente.email"
             name="email"
-            required
-            email
+
             #email="ngModel"
           />
+          <!-- required
+          email -->
           <div
             class="alert alert-danger"
             *ngIf="email.invalid && (email.dirty || email.touched)"
